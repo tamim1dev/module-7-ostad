@@ -1,0 +1,14 @@
+name: CI
+on: push
+
+jobs:
+  build-test:
+    runs-on: [self-hosted, linux, cloudnest]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Show which machine runs this
+        run: hostname && whoami
+      - name: Build
+        run: go build ./...
+      - name: Test
+        run: go test ./... -v
